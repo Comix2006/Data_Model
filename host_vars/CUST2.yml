@@ -1,0 +1,16 @@
+---
+
+hostname: CUST2
+
+interfaces:
+ - name: Ethernet0/1 
+   description: WAN
+   ip: 192.168.200.100
+
+ - name: Ethernet1/1
+   description: LAN
+   ip: 172.16.20.1
+
+
+neighbor: { ip: 192.168.200.3, bgp_as: 10 }
+net: { network: 172.16.20.0, mask: 255.255.255.0 }

@@ -1,0 +1,27 @@
+---
+
+hostname: RR
+loopback: { ip: 1.1.1.1 }
+
+interfaces: 
+ - name: Ethernet1/0
+   ip: 192.168.23.3
+ - name: Ethernet1/1
+   ip: 192.168.34.3
+
+router_id: 1.1.1.1
+networks:
+ - 192.168.23.0 0.0.0.255
+ - 192.168.34.0 0.0.0.255
+ - 1.1.1.1 0.0.0.0
+
+neighbors:
+ - ip: 2.2.2.2
+   bgp_as: 10
+
+ - ip: 3.3.3.3
+   bgp_as: 10
+
+
+
+

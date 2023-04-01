@@ -1,0 +1,31 @@
+---
+
+hostname: Edge-1
+
+loopback: { ip: 2.2.2.2 }
+
+intf: Ethernet1/0 
+addr: { ip: 192.168.23.2 }
+
+intf_cust: Ethernet0/1
+cust: { ip: 192.168.100.2, subnet: 255.255.255.0 }
+
+router_id: 2.2.2.2
+networks:
+ - 192.168.23.0 0.0.0.255
+ - 2.2.2.2 0.0.0.0
+
+neighbors:
+ - ip: 1.1.1.1
+   bgp_as: 10
+
+n_cust: { ip: 192.168.100.100, bgp_as: 20 }
+
+
+
+
+
+
+
+
+
