@@ -1,0 +1,11 @@
+---
+
+############# Create MPLS-VPN for Customers #############
+- name: Configuration Customer Routers
+  hosts: Edge
+  connection: network_cli
+  
+  tasks:
+    - name: Put Config
+      ios_config:
+        src: "MPLS.j2"

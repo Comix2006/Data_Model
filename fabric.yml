@@ -1,0 +1,37 @@
+---
+
+########### Edge-1 and Edge-2 ###########
+- name: Configuration Edge Routers
+  hosts: Edge
+  connection: network_cli
+
+  tasks:
+    - name: Put Config
+      ios_config:
+        src: "Edge.j2"
+
+
+
+############# RR #############
+- name: Configuration Core Router
+  hosts: Core
+  connection: network_cli
+ 
+  tasks:
+    - name: Put Config
+      ios_config:
+        src: "Core.j2"
+
+
+
+############# Customer #############
+- name: Configuration Customer Routers
+  hosts: Customers
+  connection: network_cli
+  
+  tasks:
+    - name: Put Config
+      ios_config:
+        src: "Customers.j2"
+
+

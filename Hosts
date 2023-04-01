@@ -1,0 +1,20 @@
+[Core]
+RR ansible_host=192.192.192.1
+
+[Edge]
+Edge-1 ansible_host=192.192.192.2
+Edge-2 ansible_host=192.192.192.3
+
+[Customers]
+CUST1 ansible_host=192.192.192.5
+CUST2 ansible_host=192.192.192.20
+
+[HQ:children]
+Core
+Edge
+
+[all:vars]
+ansible_connection=network_cli
+ansible_network_os=ios
+ansible_user=cisco
+ansible_password=cisco

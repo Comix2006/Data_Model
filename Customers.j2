@@ -1,0 +1,10 @@
+{% for intf in interfaces %}
+interface {{ intf.name }}
+ description {{ intf.description }}
+ ip address {{ intf.ip }} {{intf.subnet|default("255.255.255.0") }}
+ no shutdown
+{% endfor %}
+!
+router bgp {{ bgp_as }}
+ neighbor {{ neighbor.ip }} remote {{ neighbor.bgp_as }}
+ network {{ net.network }} mask {{ net.mask }}

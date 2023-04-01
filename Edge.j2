@@ -1,0 +1,32 @@
+interface loopback 0
+ ip address {{ loopback.ip }} {{ loopback.subnet|default("255.255.255.255") }} 
+!
+interface {{ intf }}
+ description P2P
+ ip address {{ addr.ip }} {{addr.subnet|default("255.255.255.0") }}
+ mpls ip
+ no shutdown
+!
+no router eigrp {{ eigrp_as }}
+router eigrp {{ eigrp_as }}
+router-id {{ router_id }}
+{% for network in networks %}
+network {{ network }}
+{% endfor %}
+!
+router bgp {{ bgp_as }}
+bgp router-id {{ router_id }}
+{% for n in neighbors %}
+ neighbor {{ n.ip }} remote {{ n.bgp_as }}
+ neighbor {{ n.ip }} update-source loopback0
+address-family vpnv4 unicast
+ neighbor {{ n.ip }} activate
+ neighbor {{ n.ip }} send-community both
+{% endfor %}
+
+
+
+
+
+
+

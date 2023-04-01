@@ -1,0 +1,15 @@
+ip vrf CUST
+ rd 10:{{ rd_id }}
+ route-target both 10:{{ rd_id }}
+!
+interface {{ intf_cust }}
+ description Cusromer
+ ip vrf forwarding CUST
+ ip address {{ cust.ip }} {{ cust.subnet }}
+ no shutdown
+ exit
+!
+router b {{ bgp_as }}
+address-family ipv4 vrf CUST
+ neighbor {{ n_cust.ip }} remote {{ n_cust.bgp_as }}
+ neighbor {{ n_cust.ip }} as-override
